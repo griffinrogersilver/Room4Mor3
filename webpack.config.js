@@ -1,15 +1,15 @@
 const path = require('path');
 
 const entry = [
-    './client/index.js'
+    './server/server.js'
   ];
-  
+
   const output = {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/',
     filename: 'bundle.js',
   };
-  
+
   module.exports = {
     mode: process.env.NODE_ENV,
     devServer : {
@@ -39,4 +39,4 @@ const entry = [
         },
       ]
     },
-  };    
+  };
