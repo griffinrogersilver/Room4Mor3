@@ -47,30 +47,28 @@ const Login = () => {
             return response.json();
           })
           .then((data) => {
-            if (Object.prototype.hasOwnProperty.call(data, 'error')) {
-              window.alert(data.error);
-            }
-            else {
-              console.log(data);
-              setLoggedIn(true);
-            }
+            console.log(data)
+            if(data[0].hasOwnProperty('username')) {
+              setLoggedIn(true);}
+            // } else {
+            // if (Object.prototype.hasOwnProperty.call(data, 'error')) {
+            //   window.alert(data.error);
+            // }
+              
+              
+            // }
           })
           .catch((err) => {
+            window.alert('Please enter a valid account');
             console.log(err);
           });
       };
       if (isLoggedIn){
         console.log('LOGGED IN');
         return (
-          <Router>
-            {/* <Redirect to="/"/> */}
-            <Switch>
-              <Route component={App} exact path="/app" />
-              {/* <Route path="/app">
-                <App />
-              </Route> */}
-            </Switch> 
-          </Router>
+        
+             <Redirect from="/" to="/app"/> 
+            
         );
       }
 
@@ -85,7 +83,7 @@ const Login = () => {
                 <input id="username" type="text" placeholder="Username"></input>
                 <input id="password" type="text" placeholder="Password"></input>
                 <button>Login</button>
-                <button>Sign Up BEER</button>
+                <button>Sign Up</button>
             </form>
         </Route>
     </Router>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Switch, Route} from 'react-router-dom';
 import CardContainer from './CardContainer.jsx';
 import NavBar from './NavBar.jsx';
 import Login from './Login.jsx';
@@ -11,7 +11,12 @@ const App = () => {
     <div className="app">
       {/* <NavBar/>  */}
       {/* <CardContainer/> */}
-      <Login />
+      <Router>
+        <Switch>
+        <Route exact path='/' component={Login}/>
+        <Route exact path='/app' component={CardContainer}/>
+        </Switch>
+      </Router>
 
 
 

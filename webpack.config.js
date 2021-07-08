@@ -18,7 +18,7 @@ const entry = [
       port: 8080,
       hot:true,
       proxy: {
-        '/login': 'http://localhost:3000'
+        '/': 'http://localhost:3000'
       }
     },
     entry,

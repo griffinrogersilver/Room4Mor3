@@ -1,11 +1,12 @@
-// import React from 'react';
+import React from 'react';
 
-// const CreateEvent = () => {
+const CreateEvent = () => {
 
-//   return (
-//     <div className='create'>
-//       </div>
-//   )
-// }
+  return (
+    <div className='create'>
+        <h1>Create a Frolf-vent</h1>
+      </div>
+  )
+}
 
-// export default CreateEvent
+export default CreateEvent
