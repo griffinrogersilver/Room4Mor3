@@ -9,9 +9,11 @@ app.use(express.json());
 
 app.use(express.urlencoded({extended: true}))
 
+app.use('/build', express.static(path.join(__dirname, '../build')))
+
 // app.use('/', express.static(path.resolve(__dirname, '../index.html')));
 
-app.get('/users', userController.getUser, (req,res) => {
+app.use('/users', userController.getUser, (req,res) => {
   return res.status(200).json(res.locals.users)
 })
 
@@ -19,6 +21,22 @@ app.get('/events', userController.getEvent, (req,res) => {
   return res.status(200).json(res.locals.events)
 })
 
+app.get('/reviews', userController.getReviews, (req, res)=>{
+    return res.status(200).json(res.locals.reviews)
+})
+
+// app.get('/auth', userController.authenticateUser, (req, res)=> {
+
+// }
+// )
+app.post('/login', userController.authenticateUser, (req,res)=> {
+  return res.status(200).json(res.locals.authUser);
+})
+ 
+
+// app.post('/signup',userController.signup, (req,res)=> {
+
+// })
 
 app.use('/', (req,res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'))

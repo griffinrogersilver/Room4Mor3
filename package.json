@@ -2,7 +2,7 @@
   "name": "Room4Mor3",
   "version": "1.0.0",
   "description": "Local events near you! Planning, attending, and tracking",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
     "start": "cross-env NODE_ENV=production node server/server.js",

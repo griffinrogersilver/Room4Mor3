@@ -1,7 +1,7 @@
 const path = require('path');
 
 const entry = [
-    './server/server.js'
+    './server/index.js'
   ];
 
   const output = {
@@ -16,7 +16,10 @@ const entry = [
       publicPath: '/build',
       compress: true,
       port: 8080,
-      hot:true
+      hot:true,
+      proxy: {
+        '/login': 'http://localhost:3000'
+      }
     },
     entry,
     output,

@@ -4,15 +4,35 @@ const userController = {};
 
 
 userController.addUser = (req, res, next)=>{
-const{id} = req.query
+const{id} = req.body
 const values = [id]
 
 
 return next()
 }
 
+userController.authenticateUser = (req, res, next)=>{
+const { username, password } = req.body;
+const values = [ username, password ];
+const query = 'SELECT * FROM Users where username=$1 AND password=$2';
+
+db.query(query, values)
+    .then(res, () => {
+        return res.json();
+    })
+    .then(authUser, () => {
+        res.locals.authUser = authUser;
+        return next()
+    })
+    .catch(err=>{console.log(err)
+    return next(err)
+  })
+}
+
+
+
 userController.updateUser = (req, res, next)=>{
-    const{id} = req.query
+    const{id} = req.body
     const values = [id]
    const myQuery = 'SELECT user from Users where Users = $1'
 
@@ -20,12 +40,23 @@ userController.updateUser = (req, res, next)=>{
     
 }
 
-userController.deleteUser = (req, res, next)=>{
-
-    
-
-    
+userController.getReviews = (req, res, next) => {
+    const myQuery = 'SELECT * from Reviews where reviewID = 1';
+    db.query(myQuery)
+    .then(data => {
+        res.locals.reviews = data.rows[0];
+        return next();
+    })
 }
+
+// userController.deleteUser = (req, res, next)=>{
+//   const {id} = req.query
+//     const values = [id]
+// // const myQuery = 'DELETE FROM Users where userID =$1';
+    
+
+    
+// }
 
 userController.getUser = (req, res, next)=>{
 
@@ -46,7 +77,7 @@ userController.getUser = (req, res, next)=>{
 
 userController.getEvent = (req, res, next)=>{
 
-    // const{id} = req.query
+    // const{id} = req.body
     // const values = [id]
    const myQuery = 'SELECT * from Events';
    db.query(myQuery) //db.query(myQuery, values)?
